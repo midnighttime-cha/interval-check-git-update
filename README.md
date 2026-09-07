@@ -161,3 +161,37 @@ GITHUB_REMOTE_URL = "https://<Personal Access Token (PAT)>@github.com/[Git Owner
 - ไปที่ Job ของ Jenkins -> ติ๊ก Trigger builds remotely (e.g., from scripts)
 - ตั้งค่า Authentication Token แล้วนำค่านั้นมาใส่ใน JENKINS_JOB_TOKEN
 - ไปที่ User Profile ใน Jenkins -> Configure -> API Token -> Add new Token นำมาใส่ใน JENKINS_API_TOKEN
+
+## รันเป็น Systemd Service
+ช่วยให้ระบบ auto-restart เองหาก script crash หรือเซิร์ฟเวอร์ reboot
+1. สร้างไฟล์ service definition:
+```bash
+sudo nano /etc/systemd/system/git-sync-watcher.service
+```
+2. วางเนื้อหาคอนฟิก:
+```bash
+[Unit]
+Description=GitHub to Gitea Sync and Jenkins Trigger Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/path/to/script_directory
+ExecStart=/path/to/script_directory/venv/bin/python3 /path/to/script_directory/sync_mirror_and_trigger_jenkins.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+3. สั่งเปิดและเริ่มทำงาน:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable git-sync-watcher
+sudo systemctl start git-sync-watcher
+
+# ดูสถานะและ log
+sudo systemctl status git-sync-watcher
+journalctl -u git-sync-watcher -f
+```
