@@ -1,5 +1,5 @@
 # ใช้ Python ทำการตรวจสอบ Commit ล่าสุดใน Github เพื่อสั่งให้ Gitea ทำการ Sync ข้อมูลล่าสุดมา เพื่อสั่ง Jenkins ทำงาน
-Python จะทำการวิ่งไปเช็ค commit hash ระหว่าง GitHub และ Gitea ผ่าน Git CLI หรือ REST API จากนั้นสั่ง Gitea API ให้ทำการ Sync Mirror ทันที และส่ง webhook ไป Trigger Jenkins Pipeline
+เวลาที่ต้องเจอ Server สำหรับ Production ที่ไม่สามารถ trigger ด้วย webhook หรือ runner อื่นๆจากภายนอกได้ เลยมีไอเดียอยากใช้ Python ทำการวิ่งไปเช็ค commit hash ระหว่าง GitHub และ Gitea ผ่าน Git CLI หรือ REST API จากนั้นสั่ง Gitea API ให้ทำการ Sync Mirror ทันที และส่ง webhook ไป Trigger Jenkins Pipeline
 
 ## หลักการทำงาน
 1. ใช้ git ls-remote เช็ค remote hash ของ GitHub และ Gitea โดยตรงโดยไม่ต้อง clone repo ลงเครื่อง
