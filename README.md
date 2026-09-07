@@ -157,6 +157,7 @@ if __name__ == "__main__":
 GITHUB_REMOTE_URL = "https://<Personal Access Token (PAT)>@github.com/[Git Owner]/[Repo Name].git"
 ```
 หรือคอนฟิก SSH key ไว้ในเครื่องที่รันสคริปต์ แล้วใช้ URL รูปแบบ git@github.com:...
+
 3. Jenkins Remote Trigger
 - ไปที่ Job ของ Jenkins -> ติ๊ก Trigger builds remotely (e.g., from scripts)
 - ตั้งค่า Authentication Token แล้วนำค่านั้นมาใส่ใน JENKINS_JOB_TOKEN
