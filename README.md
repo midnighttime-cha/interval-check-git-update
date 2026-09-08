@@ -30,7 +30,7 @@ TARGET_BRANCHES = [
 ]
 
 # Gitea Config
-GITEA_BASE_URL = "[http://10.3.23.139:3000](https://gitea.example.com)"
+GITEA_BASE_URL = "https://gitea.example.com"
 GITEA_OWNER = "[Git Owner]"
 GITEA_REPO = "[Repo Name]"
 # สร้างได้ที่: Gitea Settings -> Applications -> Generate New Token
